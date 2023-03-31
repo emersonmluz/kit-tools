@@ -17,7 +17,7 @@ class KitToolsViewController: UIViewController {
         collection.collectionViewLayout = layout
         collection.showsVerticalScrollIndicator = false
         collection.contentMode = .scaleToFill
-        collection.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.shared.identifier)
+        collection.register(CollectionCell.self, forCellWithReuseIdentifier: CollectionCell.identifier)
         collection.dataSource = self
         collection.delegate = self
         return collection
@@ -55,11 +55,12 @@ extension KitToolsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CollectionCell.shared.getNumberOfTools()
+        let cell = CollectionCell()
+        return cell.imageName.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.shared.identifier, for: indexPath) as! CollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionCell.identifier, for: indexPath) as! CollectionCell
         cell.setCell(indexCell: indexPath.row)
         return cell
     }
