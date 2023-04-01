@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionCell: UICollectionViewCell {
+class KitToolsCollectionCell: UICollectionViewCell {
     static var identifier = "collectionCell"
     
     var imageName: [String] = {
@@ -21,7 +21,7 @@ class CollectionCell: UICollectionViewCell {
         return namesSorted
     }()
     
-    lazy var toolIconImageView: UIImageView = {
+    var toolIconImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.borderWidth = 0.5
@@ -29,7 +29,7 @@ class CollectionCell: UICollectionViewCell {
         return image
     }()
     
-    lazy var toolNameLabel: UILabel = {
+    var toolNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Arial", size: 16)

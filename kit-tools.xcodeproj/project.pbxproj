@@ -12,7 +12,7 @@
 		EE58F57029D5F9870055E020 /* KitToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F56F29D5F9870055E020 /* KitToolsViewController.swift */; };
 		EE58F57529D5F9890055E020 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE58F57429D5F9890055E020 /* Assets.xcassets */; };
 		EE58F57829D5F9890055E020 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE58F57629D5F9890055E020 /* LaunchScreen.storyboard */; };
-		EE58F58329D5FF1E0055E020 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F58229D5FF1E0055E020 /* CollectionCell.swift */; };
+		EE58F58329D5FF1E0055E020 /* KitToolsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F58229D5FF1E0055E020 /* KitToolsCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		EE58F57429D5F9890055E020 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE58F57729D5F9890055E020 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE58F57929D5F9890055E020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE58F58229D5FF1E0055E020 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		EE58F58229D5FF1E0055E020 /* KitToolsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitToolsCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +79,7 @@
 		EE58F58029D5FAE90055E020 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE58F58229D5FF1E0055E020 /* CollectionCell.swift */,
+				EE58F58229D5FF1E0055E020 /* KitToolsCollectionCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,7 +164,7 @@
 				EE58F57029D5F9870055E020 /* KitToolsViewController.swift in Sources */,
 				EE58F56C29D5F9870055E020 /* AppDelegate.swift in Sources */,
 				EE58F56E29D5F9870055E020 /* SceneDelegate.swift in Sources */,
-				EE58F58329D5FF1E0055E020 /* CollectionCell.swift in Sources */,
+				EE58F58329D5FF1E0055E020 /* KitToolsCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
