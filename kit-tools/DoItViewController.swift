@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import CoreData
 
 final class DoItViewController: UIViewController {
     
     private var notes: [String] = UserDefaults.standard.value(forKey: "notes") as? [String] ?? []
     
-    private lazy var containerView: UIView = {
+    private var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.systemYellow
@@ -27,6 +26,7 @@ final class DoItViewController: UIViewController {
         textField.backgroundColor = UIColor.white
         textField.layer.borderWidth = 0.6
         textField.layer.borderColor = UIColor.black.cgColor
+        textField.delegate = self
         return textField
     }()
     
@@ -42,31 +42,27 @@ final class DoItViewController: UIViewController {
     private lazy var notesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        view.backgroundColor = UIColor.white
+        touchScreen()
         setComponents()
         setConstraints()
-        setupInit()
     }
     
-    private func setupInit() {
-        view.backgroundColor = UIColor.white
-        textFieldSetup()
-        tableViewSetup()
-        touchScreen()
-    }
-    
-    private func tableViewSetup() {
-        notesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        notesTableView.delegate = self
-        notesTableView.dataSource = self
-    }
-    
-    private func textFieldSetup() {
-        noteTextField.delegate = self
+    private func touchScreen () {
+        let touch = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
+        view.addGestureRecognizer(touch)
     }
     
     private func setComponents() {
@@ -99,11 +95,6 @@ final class DoItViewController: UIViewController {
         ])
     }
     
-    private func touchScreen () {
-        let touch = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
-        view.addGestureRecognizer(touch)
-    }
-    
     @objc private func addNoteButtonClick(_ sender: UITapGestureRecognizer) {
         addNote()
     }
@@ -129,7 +120,7 @@ final class DoItViewController: UIViewController {
     }
 }
 
-extension DoItViewController: UITableViewDataSource {
+extension DoItViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
@@ -141,9 +132,7 @@ extension DoItViewController: UITableViewDataSource {
         cell?.textLabel?.minimumScaleFactor = 20
         return cell ?? UITableViewCell()
     }
-}
-
-extension DoItViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
