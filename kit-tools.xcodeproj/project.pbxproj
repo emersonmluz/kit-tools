@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE4D16C529D96CC800B2966C /* KitToolsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16C429D96CC800B2966C /* KitToolsCoordinator.swift */; };
+		EE4D16C729D96E4800B2966C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16C629D96E4800B2966C /* Router.swift */; };
+		EE4D16CC29D976E000B2966C /* DoItCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16CB29D976E000B2966C /* DoItCoordinator.swift */; };
+		EE4D16CE29D97B6A00B2966C /* DoItViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16CD29D97B6A00B2966C /* DoItViewController.swift */; };
+		EE4D16D029D9825B00B2966C /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16CF29D9825B00B2966C /* CoordinatorProtocol.swift */; };
 		EE58F56C29D5F9870055E020 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F56B29D5F9870055E020 /* AppDelegate.swift */; };
 		EE58F56E29D5F9870055E020 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F56D29D5F9870055E020 /* SceneDelegate.swift */; };
 		EE58F57029D5F9870055E020 /* KitToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F56F29D5F9870055E020 /* KitToolsViewController.swift */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE4D16C429D96CC800B2966C /* KitToolsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitToolsCoordinator.swift; sourceTree = "<group>"; };
+		EE4D16C629D96E4800B2966C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		EE4D16CB29D976E000B2966C /* DoItCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoItCoordinator.swift; sourceTree = "<group>"; };
+		EE4D16CD29D97B6A00B2966C /* DoItViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoItViewController.swift; sourceTree = "<group>"; };
+		EE4D16CF29D9825B00B2966C /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		EE58F56829D5F9870055E020 /* kit-tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kit-tools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE58F56B29D5F9870055E020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE58F56D29D5F9870055E020 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +47,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE4D16C329D96C9E00B2966C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE4D16C929D9768500B2966C /* KitTools */ = {
+			isa = PBXGroup;
+			children = (
+				EE4D16C429D96CC800B2966C /* KitToolsCoordinator.swift */,
+				EE58F56F29D5F9870055E020 /* KitToolsViewController.swift */,
+			);
+			path = KitTools;
+			sourceTree = "<group>";
+		};
+		EE4D16CA29D976C500B2966C /* DoIt */ = {
+			isa = PBXGroup;
+			children = (
+				EE4D16CB29D976E000B2966C /* DoItCoordinator.swift */,
+				EE4D16CD29D97B6A00B2966C /* DoItViewController.swift */,
+			);
+			name = DoIt;
+			sourceTree = "<group>";
+		};
 		EE58F55F29D5F9870055E020 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +91,9 @@
 		EE58F56A29D5F9870055E020 /* kit-tools */ = {
 			isa = PBXGroup;
 			children = (
-				EE58F58129D5FAF10055E020 /* Model */,
+				EE58F58129D5FAF10055E020 /* Helper */,
 				EE58F58029D5FAE90055E020 /* View */,
-				EE58F57F29D5FADF0055E020 /* ViewModel */,
+				EE58F57F29D5FADF0055E020 /* Features */,
 				EE58F56B29D5F9870055E020 /* AppDelegate.swift */,
 				EE58F56D29D5F9870055E020 /* SceneDelegate.swift */,
 				EE58F57429D5F9890055E020 /* Assets.xcassets */,
@@ -68,12 +103,13 @@
 			path = "kit-tools";
 			sourceTree = "<group>";
 		};
-		EE58F57F29D5FADF0055E020 /* ViewModel */ = {
+		EE58F57F29D5FADF0055E020 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				EE58F56F29D5F9870055E020 /* KitToolsViewController.swift */,
+				EE4D16CA29D976C500B2966C /* DoIt */,
+				EE4D16C929D9768500B2966C /* KitTools */,
 			);
-			name = ViewModel;
+			name = Features;
 			sourceTree = "<group>";
 		};
 		EE58F58029D5FAE90055E020 /* View */ = {
@@ -84,11 +120,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		EE58F58129D5FAF10055E020 /* Model */ = {
+		EE58F58129D5FAF10055E020 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				EE4D16C329D96C9E00B2966C /* Model */,
+				EE4D16C629D96E4800B2966C /* Router.swift */,
+				EE4D16CF29D9825B00B2966C /* CoordinatorProtocol.swift */,
 			);
-			name = Model;
+			name = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,8 +202,13 @@
 			files = (
 				EE58F57029D5F9870055E020 /* KitToolsViewController.swift in Sources */,
 				EE58F56C29D5F9870055E020 /* AppDelegate.swift in Sources */,
+				EE4D16CE29D97B6A00B2966C /* DoItViewController.swift in Sources */,
 				EE58F56E29D5F9870055E020 /* SceneDelegate.swift in Sources */,
+				EE4D16C529D96CC800B2966C /* KitToolsCoordinator.swift in Sources */,
+				EE4D16CC29D976E000B2966C /* DoItCoordinator.swift in Sources */,
+				EE4D16C729D96E4800B2966C /* Router.swift in Sources */,
 				EE58F58329D5FF1E0055E020 /* KitToolsCollectionCell.swift in Sources */,
+				EE4D16D029D9825B00B2966C /* CoordinatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,16 +7,24 @@
 
 import UIKit
 
-class KitToolsCollectionCell: UICollectionViewCell {
+enum appName: String {
+    case doIt = "Do It"
+    case calculadora = "Calculadora"
+    case pomodoro = "Pomodoro"
+    case holidays = "Holidays"
+    case clima = "Clima"
+}
+
+final class KitToolsCollectionCell: UICollectionViewCell {
     static var identifier = "collectionCell"
     
     var imageName: [String] = {
         var name: [String] = []
-        name.append("Do It")
-        name.append("Calculadora")
-        name.append("Pomodoro")
-        name.append("Holidays")
-        name.append("Clima")
+        name.append(appName.doIt.rawValue)
+        name.append(appName.calculadora.rawValue)
+        name.append(appName.pomodoro.rawValue)
+        name.append(appName.holidays.rawValue)
+        name.append(appName.clima.rawValue)
         let namesSorted = name.sorted()
         return namesSorted
     }()

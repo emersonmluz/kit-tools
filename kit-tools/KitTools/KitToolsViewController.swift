@@ -7,7 +7,9 @@
 
 import UIKit
 
-class KitToolsViewController: UIViewController {
+final class KitToolsViewController: UIViewController {
+    
+    let coordinator: KitToolsCoordinator?
     
     lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
@@ -22,7 +24,16 @@ class KitToolsViewController: UIViewController {
         collection.delegate = self
         return collection
     }()
-
+    
+    init(coordinator: KitToolsCoordinator?) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -63,6 +74,29 @@ extension KitToolsViewController: UICollectionViewDataSource, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KitToolsCollectionCell.identifier, for: indexPath) as! KitToolsCollectionCell
         cell.setCell(indexCell: indexPath.row)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KitToolsCollectionCell.identifier, for: indexPath) as! KitToolsCollectionCell
+        let app = cell.imageName[indexPath.row]
+        var coordinatorReference: CoordinatorProtocol?
+        switch app {
+        case appName.doIt.rawValue:
+            coordinatorReference = DoItCoordinator(navigation: coordinator?.navigation)
+        case appName.calculadora.rawValue:
+            print("ir para calculadora")
+        case appName.pomodoro.rawValue:
+            print("ir para pomodoro")
+        case appName.clima.rawValue:
+            print("ir para clima")
+        case appName.holidays.rawValue:
+            print("ir para holidays")
+        default:
+            print("error")
+        }
+        if let coordinatorReference = coordinatorReference {
+            coordinator?.goToApp(coordinator: coordinatorReference)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
