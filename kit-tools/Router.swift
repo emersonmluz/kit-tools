@@ -7,12 +7,17 @@
 
 import UIKit
 
-final class Router {
+protocol RouterProtocol {
+    var navigation: UINavigationController { get }
+    static var shared: Router { get }
+    func showApp(coordinator: CoordinatorProtocol)
+}
+
+final class Router: RouterProtocol {
     var navigation = UINavigationController()
     static var shared = Router()
     
     func showApp(coordinator: CoordinatorProtocol) {
-        let coordinator = coordinator
         coordinator.start()
     }
 }

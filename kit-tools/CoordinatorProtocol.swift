@@ -9,6 +9,6 @@ import UIKit
 
 protocol CoordinatorProtocol: AnyObject {
     var navigation: UINavigationController? { get set }
-    var router: Router? { get set }
+    var router: RouterProtocol? { get set }
     func start()
 }

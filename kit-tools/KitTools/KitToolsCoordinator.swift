@@ -9,9 +9,9 @@ import UIKit
 
 final class KitToolsCoordinator: CoordinatorProtocol {
     var navigation: UINavigationController?
-    var router: Router?
+    var router: RouterProtocol?
     
-    init(navigation: UINavigationController? = nil, router: Router? = Router.shared) {
+    init(navigation: UINavigationController? = nil, router: RouterProtocol? = Router.shared) {
         self.navigation = navigation
         self.router = router
     }

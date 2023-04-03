@@ -18,9 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
-        let router = Router()
-        window?.rootViewController = router.navigation
-        router.showApp(coordinator: KitToolsCoordinator(navigation: router.navigation))
+        window?.rootViewController = Router.shared.navigation
+        Router.shared.showApp(coordinator: KitToolsCoordinator(navigation: Router.shared.navigation))
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
