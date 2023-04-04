@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  do to
-//
-//  Created by Émerson M Luz on 07/11/22.
-//
-
 import UIKit
 
 final class DoItViewController: UIViewController {

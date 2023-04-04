@@ -1,6 +1,13 @@
+//
+//  CalculatorCoordinator.swift
+//  kit-tools
+//
+//  Created by Émerson M Luz on 04/04/23.
+//
+
 import UIKit
 
-final class DoItCoordinator: CoordinatorProtocol {
+class CalculatorCoordinator: CoordinatorProtocol {
     var navigation: UINavigationController?
     var router: RouterProtocol?
     
@@ -10,7 +17,7 @@ final class DoItCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        let controller = DoItViewController()
+        let controller = CalculatorViewController()
         navigation?.pushViewController(controller, animated: true)
     }
 }

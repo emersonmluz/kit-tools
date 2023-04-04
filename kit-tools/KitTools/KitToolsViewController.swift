@@ -84,7 +84,7 @@ extension KitToolsViewController: UICollectionViewDataSource, UICollectionViewDe
         case appName.doIt.rawValue:
             coordinatorReference = DoItCoordinator(navigation: coordinator?.navigation)
         case appName.calculadora.rawValue:
-            print("ir para calculadora")
+            coordinatorReference = CalculatorCoordinator(navigation: coordinator?.navigation)
         case appName.pomodoro.rawValue:
             print("ir para pomodoro")
         case appName.clima.rawValue:
