@@ -11,7 +11,7 @@ enum appName: String {
     case doIt = "Do It"
     case calculadora = "Calculadora"
     case pomodoro = "Pomodoro"
-    case holidays = "Holidays"
+    case calendar = "Calendário"
     case clima = "Clima"
 }
 
@@ -23,7 +23,7 @@ final class KitToolsCollectionCell: UICollectionViewCell {
         name.append(appName.doIt.rawValue)
         name.append(appName.calculadora.rawValue)
         name.append(appName.pomodoro.rawValue)
-        name.append(appName.holidays.rawValue)
+        name.append(appName.calendar.rawValue)
         name.append(appName.clima.rawValue)
         let namesSorted = name.sorted()
         return namesSorted

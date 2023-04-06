@@ -16,6 +16,9 @@
 		EE4D16D529DC8ED200B2966C /* CalculatorNumericKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16D429DC8ED200B2966C /* CalculatorNumericKeyboard.swift */; };
 		EE4D16D729DC8F8000B2966C /* CalculatorLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16D629DC8F8000B2966C /* CalculatorLogic.swift */; };
 		EE4D16D929DC8FBA00B2966C /* CalculatorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16D829DC8FBA00B2966C /* CalculatorCoordinator.swift */; };
+		EE4D16DC29DC921900B2966C /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16DB29DC921900B2966C /* CalendarCoordinator.swift */; };
+		EE4D16DE29DC922600B2966C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16DD29DC922600B2966C /* CalendarViewController.swift */; };
+		EE4D16E029DC95F800B2966C /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4D16DF29DC95F800B2966C /* CalendarTableViewCell.swift */; };
 		EE58F56C29D5F9870055E020 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F56B29D5F9870055E020 /* AppDelegate.swift */; };
 		EE58F56E29D5F9870055E020 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F56D29D5F9870055E020 /* SceneDelegate.swift */; };
 		EE58F57029D5F9870055E020 /* KitToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F56F29D5F9870055E020 /* KitToolsViewController.swift */; };
@@ -34,6 +37,9 @@
 		EE4D16D429DC8ED200B2966C /* CalculatorNumericKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorNumericKeyboard.swift; sourceTree = "<group>"; };
 		EE4D16D629DC8F8000B2966C /* CalculatorLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorLogic.swift; sourceTree = "<group>"; };
 		EE4D16D829DC8FBA00B2966C /* CalculatorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCoordinator.swift; sourceTree = "<group>"; };
+		EE4D16DB29DC921900B2966C /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
+		EE4D16DD29DC922600B2966C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		EE4D16DF29DC95F800B2966C /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		EE58F56829D5F9870055E020 /* kit-tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kit-tools.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE58F56B29D5F9870055E020 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE58F56D29D5F9870055E020 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +96,15 @@
 			name = Calculator;
 			sourceTree = "<group>";
 		};
+		EE4D16DA29DC91F100B2966C /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				EE4D16DB29DC921900B2966C /* CalendarCoordinator.swift */,
+				EE4D16DD29DC922600B2966C /* CalendarViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		EE58F55F29D5F9870055E020 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +139,7 @@
 		EE58F57F29D5FADF0055E020 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				EE4D16DA29DC91F100B2966C /* Calendar */,
 				EE4D16D129DC8E2E00B2966C /* Calculator */,
 				EE4D16CA29D976C500B2966C /* DoIt */,
 				EE4D16C929D9768500B2966C /* KitTools */,
@@ -136,6 +152,7 @@
 			children = (
 				EE58F58229D5FF1E0055E020 /* KitToolsCollectionCell.swift */,
 				EE4D16D429DC8ED200B2966C /* CalculatorNumericKeyboard.swift */,
+				EE4D16DF29DC95F800B2966C /* CalendarTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4D16DE29DC922600B2966C /* CalendarViewController.swift in Sources */,
 				EE4D16D929DC8FBA00B2966C /* CalculatorCoordinator.swift in Sources */,
 				EE4D16D329DC8E7A00B2966C /* CalculatorViewController.swift in Sources */,
 				EE58F57029D5F9870055E020 /* KitToolsViewController.swift in Sources */,
@@ -228,9 +246,11 @@
 				EE58F56E29D5F9870055E020 /* SceneDelegate.swift in Sources */,
 				EE4D16C529D96CC800B2966C /* KitToolsCoordinator.swift in Sources */,
 				EE4D16D529DC8ED200B2966C /* CalculatorNumericKeyboard.swift in Sources */,
+				EE4D16DC29DC921900B2966C /* CalendarCoordinator.swift in Sources */,
 				EE4D16CC29D976E000B2966C /* DoItCoordinator.swift in Sources */,
 				EE4D16D729DC8F8000B2966C /* CalculatorLogic.swift in Sources */,
 				EE4D16C729D96E4800B2966C /* Router.swift in Sources */,
+				EE4D16E029DC95F800B2966C /* CalendarTableViewCell.swift in Sources */,
 				EE58F58329D5FF1E0055E020 /* KitToolsCollectionCell.swift in Sources */,
 				EE4D16D029D9825B00B2966C /* CoordinatorProtocol.swift in Sources */,
 			);
