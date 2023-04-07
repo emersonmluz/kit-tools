@@ -38,12 +38,20 @@ class CalendarTableViewCell: UITableViewCell {
         return label
     }()
     
+    var calendar: DateFormatter = {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd"
+        formatter.string(from: date)
+        return formatter
+    }()
+    
     private lazy var dayLabel: [UILabel] = {
         var arrayLabel: [UILabel] = []
         for day in 1...31 {
             if day < 10 {
                 arrayLabel.append(setLabel(text: "0" + String(day)))
-            } else {
+            } else if day <= 31 {
                 arrayLabel.append(setLabel(text: String(day)))
             }
         }
@@ -78,21 +86,11 @@ class CalendarTableViewCell: UITableViewCell {
         for day in 0...6 {
             containerOfDaysStackView[0].addArrangedSubview(week[day])
         }
-        for day in 0...6 {
-            containerOfDaysStackView[1].addArrangedSubview(dayLabel[day])
-        }
-        for day in 7...13 {
-            containerOfDaysStackView[2].addArrangedSubview(dayLabel[day])
-        }
-        for day in 14...20 {
-            containerOfDaysStackView[3].addArrangedSubview(dayLabel[day])
-        }
-        for day in 21...27 {
-            containerOfDaysStackView[4].addArrangedSubview(dayLabel[day])
-        }
-        for day in 28...30 {
-            containerOfDaysStackView[5].addArrangedSubview(dayLabel[day])
-        }
+        setDays(container: 1, dayStart: 0, dayFinal: 6)
+        setDays(container: 2, dayStart: 7, dayFinal: 13)
+        setDays(container: 3, dayStart: 14, dayFinal: 20)
+        setDays(container: 4, dayStart: 21, dayFinal: 27)
+        setDays(container: 5, dayStart: 28, dayFinal: 30)
     }
     
     private func setConstraints() {
@@ -184,5 +182,20 @@ class CalendarTableViewCell: UITableViewCell {
         stack.layer.cornerRadius = 10
         stack.alignment = .top
         return stack
+    }
+    
+    private func setDays(container: Int, dayStart: Int, dayFinal: Int) {
+        var cont = 1
+        for day in dayStart...dayFinal {
+            let date = calendar.string(from: Date())
+            if date == dayLabel[day].text {
+                containerOfDaysStackView[container].addArrangedSubview(dayLabel[day])
+            } else if calendar.string(from: Date()) < dayLabel[day].text! {
+                containerOfDaysStackView[container].addArrangedSubview(dayLabel[day])
+            } else {
+                containerOfDaysStackView[container].addArrangedSubview(dayLabel[Int(date)! + cont - 1 - Int(date)!])
+            }
+        cont += 1
+        }
     }
 }
