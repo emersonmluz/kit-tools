@@ -48,11 +48,14 @@ class CalendarTableViewCell: UITableViewCell {
     
     private lazy var dayLabel: [UILabel] = {
         var arrayLabel: [UILabel] = []
-        for day in 1...31 {
+        for day in 1...36 {
             if day < 10 {
                 arrayLabel.append(setLabel(text: "0" + String(day)))
             } else if day <= 31 {
                 arrayLabel.append(setLabel(text: String(day)))
+            } else {
+                arrayLabel.append(setLabel(text: "50"))
+                arrayLabel[day - 1].textColor = .white
             }
         }
         return arrayLabel
@@ -86,11 +89,11 @@ class CalendarTableViewCell: UITableViewCell {
         for day in 0...6 {
             containerOfDaysStackView[0].addArrangedSubview(week[day])
         }
-        setDays(container: 1, dayStart: 0, dayFinal: 6)
-        setDays(container: 2, dayStart: 7, dayFinal: 13)
-        setDays(container: 3, dayStart: 14, dayFinal: 20)
-        setDays(container: 4, dayStart: 21, dayFinal: 27)
-        setDays(container: 5, dayStart: 28, dayFinal: 30)
+        setDays(container: 1, dayStart: 0, dayFinal: 7)
+        setDays(container: 2, dayStart: 8, dayFinal: 14)
+        setDays(container: 3, dayStart: 15, dayFinal: 21)
+        setDays(container: 4, dayStart: 22, dayFinal: 28)
+        setDays(container: 5, dayStart: 29, dayFinal: 35)
     }
     
     private func setConstraints() {
@@ -188,10 +191,12 @@ class CalendarTableViewCell: UITableViewCell {
         var cont = 1
         let date = calendar.string(from: Date())
         for day in dayStart...dayFinal {
-            if date == dayLabel[day].text || date < dayLabel[day].text! {
+            if date == dayLabel[day].text {
                 containerOfDaysStackView[container].addArrangedSubview(dayLabel[day])
             } else if date > dayLabel[day].text! {
                 containerOfDaysStackView[container].addArrangedSubview(dayLabel[Int(date)! + cont - Int(date)!])
+            } else if date < dayLabel[day].text! {
+                containerOfDaysStackView[container].addArrangedSubview(dayLabel[day])
             }
         cont += 1
         }
