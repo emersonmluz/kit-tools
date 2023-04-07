@@ -186,14 +186,12 @@ class CalendarTableViewCell: UITableViewCell {
     
     private func setDays(container: Int, dayStart: Int, dayFinal: Int) {
         var cont = 1
+        let date = calendar.string(from: Date())
         for day in dayStart...dayFinal {
-            let date = calendar.string(from: Date())
-            if date == dayLabel[day].text {
+            if date == dayLabel[day].text || date < dayLabel[day].text! {
                 containerOfDaysStackView[container].addArrangedSubview(dayLabel[day])
-            } else if calendar.string(from: Date()) < dayLabel[day].text! {
-                containerOfDaysStackView[container].addArrangedSubview(dayLabel[day])
-            } else {
-                containerOfDaysStackView[container].addArrangedSubview(dayLabel[Int(date)! + cont - 1 - Int(date)!])
+            } else if date > dayLabel[day].text! {
+                containerOfDaysStackView[container].addArrangedSubview(dayLabel[Int(date)! + cont - Int(date)!])
             }
         cont += 1
         }
