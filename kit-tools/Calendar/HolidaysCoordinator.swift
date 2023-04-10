@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CalendarCoordinator: CoordinatorProtocol {
+class HolidaysCoordinator: CoordinatorProtocol {
     var navigation: UINavigationController?
     var router: RouterProtocol?
     
@@ -17,7 +17,7 @@ class CalendarCoordinator: CoordinatorProtocol {
     }
     
     func start() {
-        let controller = CalendarViewController()
+        let controller = HolidaysViewController()
         navigation?.pushViewController(controller, animated: true)
     }
 }
