@@ -45,18 +45,6 @@ class HolidaysViewController: UIViewController {
 }
 
 extension HolidaysViewController: UITableViewDataSource, UITableViewDelegate {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 12
-//    }
-//    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if section == 0 {
-//            return "zero"
-//        } else {
-//            return "Isso é um título"
-//        }
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return holidays.count
     }
