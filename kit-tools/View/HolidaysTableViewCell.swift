@@ -3,16 +3,16 @@ import UIKit
 class HolidaysTableViewCell: UITableViewCell {
     static var identifier = "holidaysCell"
     
-    lazy var dayLabel = setLabel(fontSize: 18, textColor: .black)
-    lazy var dayWeekLabel = setLabel(fontSize: 12, textColor: .gray)
-    lazy var holidayLabel = setLabel(fontSize: 20, textColor: .black)
-    lazy var monthLabel = setLabel(fontSize: 12, textColor: .white)
+    lazy var dayLabel = setLabel(fontSize: 20, textColor: .black)
+    lazy var dayWeekLabel = setLabel(fontSize: 14, textColor: .systemGray)
+    lazy var holidayLabel = setLabel(fontSize: 18, textColor: .black)
+    lazy var monthLabel = setLabel(fontSize: 16, textColor: .white)
     
     var miniCalendarView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 5
+        view.backgroundColor = .systemGray6
+        view.layer.borderWidth = 0.3
         return view
     }()
     
@@ -32,33 +32,34 @@ class HolidaysTableViewCell: UITableViewCell {
     
     func setConstraints() {
         NSLayoutConstraint.activate([
-            miniCalendarView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            miniCalendarView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             miniCalendarView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            miniCalendarView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            miniCalendarView.widthAnchor.constraint(equalToConstant: 100),
+            miniCalendarView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            miniCalendarView.widthAnchor.constraint(equalToConstant: 75),
             
-            dayWeekLabel.topAnchor.constraint(equalTo: miniCalendarView.topAnchor),
-            dayWeekLabel.leadingAnchor.constraint(equalTo: miniCalendarView.leadingAnchor),
-            dayWeekLabel.trailingAnchor.constraint(equalTo: miniCalendarView.trailingAnchor),
-            dayWeekLabel.heightAnchor.constraint(equalToConstant: 20),
+            monthLabel.topAnchor.constraint(equalTo: miniCalendarView.topAnchor),
+            monthLabel.leadingAnchor.constraint(equalTo: miniCalendarView.leadingAnchor),
+            monthLabel.trailingAnchor.constraint(equalTo: miniCalendarView.trailingAnchor),
+            monthLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            dayLabel.topAnchor.constraint(equalTo: dayWeekLabel.bottomAnchor),
+            dayLabel.centerYAnchor.constraint(equalTo: miniCalendarView.centerYAnchor, constant: 15),
             dayLabel.leadingAnchor.constraint(equalTo: miniCalendarView.leadingAnchor),
             dayLabel.trailingAnchor.constraint(equalTo: miniCalendarView.trailingAnchor),
-            dayLabel.bottomAnchor.constraint(equalTo: miniCalendarView.bottomAnchor),
+            dayLabel.bottomAnchor.constraint(equalTo: miniCalendarView.bottomAnchor, constant: -10),
             
-            holidayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+            holidayLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
             holidayLabel.leadingAnchor.constraint(equalTo: miniCalendarView.trailingAnchor, constant: 10),
             holidayLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
             dayWeekLabel.topAnchor.constraint(equalTo: holidayLabel.bottomAnchor, constant: 10),
-            dayWeekLabel.leadingAnchor.constraint(equalTo: miniCalendarView.trailingAnchor, constant: 10)
+            dayWeekLabel.leadingAnchor.constraint(equalTo: miniCalendarView.trailingAnchor, constant: 15)
         ])
         
     }
     
     func configComponents(date: Date, holidayName: String) {
-        dayWeekLabel.backgroundColor = .systemRed
+        monthLabel.backgroundColor = .systemRed
+        monthLabel.font = UIFont(name: "Arial-BoldMT", size: 16)
         holidayLabel.textAlignment = .left
         monthLabel.text = convertDate(format: "MMM", date: date)
         dayLabel.text = convertDate(format: "dd", date: date)

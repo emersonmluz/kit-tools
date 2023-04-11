@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  NationalHolidays
-//
-//  Created by Émerson M Luz on 22/11/22.
-//
-
 import UIKit
 
 class HolidaysViewController: UIViewController {
@@ -15,59 +8,62 @@ class HolidaysViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: HolidaysTableViewCell.identifier)
+        tableView.register(HolidaysTableViewCell.self, forCellReuseIdentifier: HolidaysTableViewCell.identifier)
         return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupUI()
     }
     
-    func loadCalendar () {
-        let url = URL(string: "https://brasilapi.com.br/api/feriados/v1/\(year)")
-        
-        if let url = url {
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.addValue("aplication/json", forHTTPHeaderField: "Content-Type")
-            
-            let session = URLSession.shared
-            
-            let task = session.dataTask(with: request) { data, response, error in
-                if let data = data, error == nil {
-                    
-                    do {
-                        let dateFormat = DateFormatter()
-                        dateFormat.dateFormat = "yyyy-MM-dd"
-                        
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = .formatted(dateFormat)
-                        
-                        self.calendar = try decoder.decode([NationalHolidays].self, from: data)
-                        
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                        
-                    } catch let error {
-                        print(error)
-                    }
-                }
-            }
-            task.resume()
+    func setupUI() {
+        setComponents()
+        setContraints()
+        requestApi()
+    }
+    
+    func setComponents() {
+        view.addSubview(holidaysTableView)
+    }
+    
+    func setContraints() {
+        NSLayoutConstraint.activate([
+            holidaysTableView.topAnchor.constraint(equalTo: view.topAnchor),
+            holidaysTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            holidaysTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            holidaysTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    func requestApi() {
+        ApiManager.shared.apiRequest(url: "https://brasilapi.com.br/api/feriados/v1/", endpoint: "2023", modelType: [NationalHolidays].self) { escape in
+            self.holidays = escape
+            self.holidaysTableView.reloadData()
         }
     }
 }
 
 extension HolidaysViewController: UITableViewDataSource, UITableViewDelegate {
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 12
+//    }
+//    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if section == 0 {
+//            return "zero"
+//        } else {
+//            return "Isso é um título"
+//        }
+//    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return holidays.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HolidaysTableViewCell.identifier) as! HolidaysTableViewCell
+        cell.setCell(date: holidays[indexPath.row].date, holidayName: holidays[indexPath.row].name)
         return cell
     }
     
