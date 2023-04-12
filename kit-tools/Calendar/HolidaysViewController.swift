@@ -38,6 +38,23 @@ class HolidaysViewController: UIViewController {
         return textField
     }()
     
+    var loadingView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.layer.opacity = 0.6
+        view.isHidden = false
+        return view
+    }()
+    
+    var activity: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView()
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        activity.color = .white
+        activity.style = .large
+        return activity
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -54,6 +71,8 @@ class HolidaysViewController: UIViewController {
     func setComponents() {
         view.addSubview(yearTextField)
         view.addSubview(holidaysTableView)
+        view.addSubview(loadingView)
+        loadingView.addSubview(activity)
     }
     
     func setContraints() {
@@ -66,7 +85,15 @@ class HolidaysViewController: UIViewController {
             holidaysTableView.topAnchor.constraint(equalTo: yearTextField.bottomAnchor),
             holidaysTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             holidaysTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            holidaysTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            holidaysTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            loadingView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            activity.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            activity.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor)
         ])
     }
     
@@ -76,9 +103,15 @@ class HolidaysViewController: UIViewController {
     }
     
     func requestApi() {
+        loadingView.isHidden = false
+        activity.startAnimating()
         ApiManager.shared.apiRequest(url: "https://brasilapi.com.br/api/feriados/v1/", endpoint: yearTextField.text ?? "2020", modelType: [NationalHolidays].self) { escape in
             self.holidays = escape
             self.holidaysTableView.reloadData()
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                self.activity.stopAnimating()
+                self.loadingView.isHidden = true
+            }
         }
     }
 }
