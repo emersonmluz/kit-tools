@@ -1,7 +1,7 @@
 import UIKit
 
 class HolidaysViewController: UIViewController {
-    var holidays: [NationalHolidays] = []
+    var holidays: [NationalHolidaysModel] = []
     var years: [Int] = {
         var array: [Int] = []
         for year in 1980...2100 {
@@ -105,7 +105,7 @@ class HolidaysViewController: UIViewController {
     func requestApi() {
         loadingView.isHidden = false
         activity.startAnimating()
-        ApiManager.shared.apiRequest(url: "https://brasilapi.com.br/api/feriados/v1/", endpoint: yearTextField.text ?? "2020", modelType: [NationalHolidays].self) { escape in
+        ApiManager.shared.apiRequest(url: "https://brasilapi.com.br/api/feriados/v1/", endpoint: yearTextField.text ?? "2020", modelType: [NationalHolidaysModel].self) { escape in
             self.holidays = escape
             self.holidaysTableView.reloadData()
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in

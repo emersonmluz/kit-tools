@@ -71,6 +71,7 @@ class WeatherViewController: UIViewController {
         view.backgroundColor = .white
         setComponents()
         setConstraints()
+        requestApi()
     }
     
     func setComponents() {
@@ -112,5 +113,11 @@ class WeatherViewController: UIViewController {
             cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             cityLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
+    }
+    
+    func requestApi() {
+        ApiManager.shared.apiRequest(url: "https://api.openweathermap.org/data/2.5/weather?appid=aeefba332b49db396d425480b21571b2&units=metric&q=", endpoint: "porto%20alegre,br", modelType: WeatherModel.self) { escape in
+            print(escape)
+        }
     }
 }

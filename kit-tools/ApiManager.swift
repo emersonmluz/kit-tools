@@ -10,7 +10,7 @@ import Foundation
 class ApiManager {
     static var shared = ApiManager()
     
-    func apiRequest<T: Decodable>(url: String, endpoint: String, modelType: [T].Type, completion: @escaping((_ escape: [T]) -> Void)) {
+    func apiRequest<T: Decodable>(url: String, endpoint: String, modelType: T.Type, completion: @escaping((_: T) -> Void)) {
         let url = URL(string: url + endpoint)
         
         if let url = url {

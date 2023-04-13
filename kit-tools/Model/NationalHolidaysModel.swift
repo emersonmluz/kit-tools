@@ -1,6 +1,6 @@
 import UIKit
 
-struct NationalHolidays: Decodable {
+struct NationalHolidaysModel: Decodable {
     var date: Date
     var name: String
     var type: String
