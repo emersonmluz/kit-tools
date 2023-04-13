@@ -10,7 +10,7 @@ import Foundation
 class ApiManager {
     static var shared = ApiManager()
     
-    func apiRequest<T: Decodable>(url: String, endpoint: String, modelType: T.Type, completion: @escaping((_: T) -> Void)) {
+    func apiRequest<T: Decodable>(url: String, endpoint: String, modelType: T.Type, completion: @escaping((_: T?, _ error: NSError?) -> Void)) {
         let url = URL(string: url + endpoint)
         
         if let url = url {
@@ -28,10 +28,12 @@ class ApiManager {
                         decoder.dateDecodingStrategy = .formatted(dateFormat)
                         let decoderResponse = try decoder.decode(modelType.self, from: data)
                         DispatchQueue.main.async {
-                            completion(decoderResponse)
+                            completion(decoderResponse, nil)
                         }
-                    } catch let error {
-                        print(error)
+                    } catch let error as NSError {
+                        DispatchQueue.main.async {
+                            completion(nil, error)
+                        }
                     }
                 }
             }

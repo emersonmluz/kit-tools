@@ -105,10 +105,20 @@ class HolidaysViewController: UIViewController {
     func requestApi() {
         loadingView.isHidden = false
         activity.startAnimating()
-        ApiManager.shared.apiRequest(url: "https://brasilapi.com.br/api/feriados/v1/", endpoint: yearTextField.text ?? "2020", modelType: [NationalHolidaysModel].self) { escape in
-            self.holidays = escape
-            self.holidaysTableView.reloadData()
+        ApiManager.shared.apiRequest(url: "https://brasilapi.com.br/api/feriados/v1/", endpoint: yearTextField.text ?? "2020", modelType: [NationalHolidaysModel].self) { holidays, error in
+            
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                guard let holidays = holidays else {
+                    self.activity.stopAnimating()
+                    self.loadingView.isHidden = true
+                    self.yearTextField.text = "2023"
+                    let alert = UIAlertController(title: "Erro", message: "Falha ao buscar dados!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Entendi", style: .default))
+                    self.present(alert, animated: true)
+                    return}
+                
+                self.holidays = holidays
+                self.holidaysTableView.reloadData()
                 self.activity.stopAnimating()
                 self.loadingView.isHidden = true
             }

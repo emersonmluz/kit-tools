@@ -14,6 +14,9 @@ class WeatherViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = .systemGray6
         textField.layer.cornerRadius = 10
+        textField.placeholder = "Digite uma cidade"
+        textField.textAlignment = .center
+        textField.delegate = self
         return textField
     }()
     
@@ -24,6 +27,7 @@ class WeatherViewController: UIViewController {
         image = UIImage(systemName: "magnifyingglass")!
         button.tintColor = .black
         button.setBackgroundImage(image, for: .normal)
+        button.addTarget(self, action: #selector(searchButtonClick(_:)), for: .touchUpInside)
         return button
     }()
     
@@ -60,18 +64,35 @@ class WeatherViewController: UIViewController {
         image.layer.shadowOpacity = 6
         return image
     }()
+    
+    var loadingView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.layer.opacity = 0.6
+        view.isHidden = false
+        return view
+    }()
+    
+    var activity: UIActivityIndicatorView = {
+        let activity = UIActivityIndicatorView()
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        activity.color = .white
+        activity.style = .large
+        return activity
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
     }
     
     func setupUI() {
         view.backgroundColor = .white
         setComponents()
         setConstraints()
-        requestApi()
+        setTouchScreen()
+        apiRequest(city: "porto%20alegre")
     }
     
     func setComponents() {
@@ -81,6 +102,8 @@ class WeatherViewController: UIViewController {
         view.addSubview(weatherImage)
         view.addSubview(grauLabel)
         view.addSubview(cityLabel)
+        view.addSubview(loadingView)
+        loadingView.addSubview(activity)
     }
     
     func setConstraints() {
@@ -100,10 +123,10 @@ class WeatherViewController: UIViewController {
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             searchButton.heightAnchor.constraint(equalToConstant: 35),
             
-            weatherImage.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 30),
-            weatherImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            weatherImage.heightAnchor.constraint(equalToConstant: 100),
-            weatherImage.widthAnchor.constraint(equalToConstant: 100),
+            weatherImage.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 40),
+            weatherImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            weatherImage.heightAnchor.constraint(equalToConstant: 85),
+            weatherImage.widthAnchor.constraint(equalToConstant: 85),
             
             grauLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor, constant: 50),
             grauLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -112,12 +135,81 @@ class WeatherViewController: UIViewController {
             cityLabel.topAnchor.constraint(equalTo: grauLabel.bottomAnchor, constant: 20),
             cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             cityLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            loadingView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            activity.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            activity.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor)
         ])
     }
     
-    func requestApi() {
-        ApiManager.shared.apiRequest(url: "https://api.openweathermap.org/data/2.5/weather?appid=aeefba332b49db396d425480b21571b2&units=metric&q=", endpoint: "porto%20alegre,br", modelType: WeatherModel.self) { escape in
-            print(escape)
+    @objc func searchButtonClick(_: UIGestureRecognizer) {
+        searchCity()
+        searchTextField.text = ""
+    }
+    
+    func setTouchScreen() {
+        let touch = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
+        view.addGestureRecognizer(touch)
+    }
+    
+    func searchCity() {
+        guard searchTextField.text != nil && searchTextField.text != "" else {return}
+        let city = searchTextField.text?.addingPercentEncoding(withAllowedCharacters: .alphanumerics)
+        apiRequest(city: city ?? "")
+    }
+    
+    func apiRequest(city: String) {
+        loadingView.isHidden = false
+        activity.startAnimating()
+        let url = "https://api.openweathermap.org/data/2.5/weather?appid=aeefba332b49db396d425480b21571b2&units=metric&q="
+        ApiManager.shared.apiRequest(url: url, endpoint: city, modelType: WeatherModel.self) { weather, error in
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
+                guard let weather = weather else {
+                    self.loadingView.isHidden = true
+                    self.activity.stopAnimating()
+                    let alert = UIAlertController(title: "Erro", message: "Falha ao buscar dados!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Entendi", style: .default))
+                    self.present(alert, animated: true)
+                    return}
+                
+                switch weather.weather.first?.state {
+                case "Sun":
+                    self.weatherImage.image = UIImage(systemName: "sun.max.fill")
+                    self.weatherImage.tintColor = .systemYellow
+                case "Clouds":
+                    self.weatherImage.image = UIImage(systemName: "cloud.fill")
+                    self.weatherImage.tintColor = .systemGray4
+                case "Rain":
+                    self.weatherImage.image = UIImage(systemName: "cloud.rain.fill")
+                    self.weatherImage.tintColor = .systemGray4
+                default:
+                    self.weatherImage.image = nil
+                    let alert = UIAlertController(title: nil, message: "Imagem do clima não mapeada.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Entendi", style: .cancel))
+                    self.present(alert, animated: true)
+                }
+                
+                self.grauLabel.text = String(Int(weather.temperature.temp)) + " °C"
+                self.cityLabel.text = (weather.city)
+                self.loadingView.isHidden = true
+                self.activity.stopAnimating()
+            }
         }
+    }
+}
+
+extension WeatherViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        searchCity()
+        searchTextField.text = ""
     }
 }
