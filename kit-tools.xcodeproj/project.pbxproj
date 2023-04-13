@@ -27,6 +27,8 @@
 		EE58F58329D5FF1E0055E020 /* KitToolsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F58229D5FF1E0055E020 /* KitToolsCollectionCell.swift */; };
 		EEEB1B2029E257C400BBC268 /* NationalHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B1F29E257C400BBC268 /* NationalHolidays.swift */; };
 		EEEB1B2329E4986600BBC268 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B2229E4986600BBC268 /* ApiManager.swift */; };
+		EEEB1B2629E74C2300BBC268 /* WeatherCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B2529E74C2300BBC268 /* WeatherCoordinator.swift */; };
+		EEEB1B2829E74C7100BBC268 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B2729E74C7100BBC268 /* WeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		EE58F58229D5FF1E0055E020 /* KitToolsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitToolsCollectionCell.swift; sourceTree = "<group>"; };
 		EEEB1B1F29E257C400BBC268 /* NationalHolidays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalHolidays.swift; sourceTree = "<group>"; };
 		EEEB1B2229E4986600BBC268 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		EEEB1B2529E74C2300BBC268 /* WeatherCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCoordinator.swift; sourceTree = "<group>"; };
+		EEEB1B2729E74C7100BBC268 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,7 @@
 		EE58F57F29D5FADF0055E020 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				EEEB1B2429E74BD400BBC268 /* Weather */,
 				EE4D16DA29DC91F100B2966C /* Calendar */,
 				EE4D16D129DC8E2E00B2966C /* Calculator */,
 				EE4D16CA29D976C500B2966C /* DoIt */,
@@ -171,6 +176,15 @@
 				EEEB1B2229E4986600BBC268 /* ApiManager.swift */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		EEEB1B2429E74BD400BBC268 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				EEEB1B2529E74C2300BBC268 /* WeatherCoordinator.swift */,
+				EEEB1B2729E74C7100BBC268 /* WeatherViewController.swift */,
+			);
+			name = Weather;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE4D16DE29DC922600B2966C /* HolidaysViewController.swift in Sources */,
+				EEEB1B2829E74C7100BBC268 /* WeatherViewController.swift in Sources */,
 				EE4D16D929DC8FBA00B2966C /* CalculatorCoordinator.swift in Sources */,
 				EE4D16D329DC8E7A00B2966C /* CalculatorViewController.swift in Sources */,
 				EE58F57029D5F9870055E020 /* KitToolsViewController.swift in Sources */,
@@ -253,6 +268,7 @@
 				EE4D16C529D96CC800B2966C /* KitToolsCoordinator.swift in Sources */,
 				EE4D16D529DC8ED200B2966C /* CalculatorNumericKeyboard.swift in Sources */,
 				EE4D16DC29DC921900B2966C /* HolidaysCoordinator.swift in Sources */,
+				EEEB1B2629E74C2300BBC268 /* WeatherCoordinator.swift in Sources */,
 				EEEB1B2329E4986600BBC268 /* ApiManager.swift in Sources */,
 				EE4D16CC29D976E000B2966C /* DoItCoordinator.swift in Sources */,
 				EE4D16D729DC8F8000B2966C /* CalculatorLogic.swift in Sources */,
