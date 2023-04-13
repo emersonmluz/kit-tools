@@ -99,18 +99,18 @@ class WeatherViewController: UIViewController {
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             searchButton.heightAnchor.constraint(equalToConstant: 35),
             
-            cityLabel.bottomAnchor.constraint(equalTo: view.centerYAnchor),
-            cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            cityLabel.heightAnchor.constraint(equalToConstant: 20),
+            weatherImage.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 30),
+            weatherImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            weatherImage.heightAnchor.constraint(equalToConstant: 100),
+            weatherImage.widthAnchor.constraint(equalToConstant: 100),
             
-            grauLabel.bottomAnchor.constraint(equalTo: cityLabel.topAnchor, constant: -20),
+            grauLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor, constant: 50),
             grauLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             grauLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            weatherImage.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 20),
-            weatherImage.bottomAnchor.constraint(equalTo: grauLabel.topAnchor, constant: -20),
-            weatherImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            weatherImage.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 100)
+            cityLabel.topAnchor.constraint(equalTo: grauLabel.bottomAnchor, constant: 20),
+            cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cityLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
 }
