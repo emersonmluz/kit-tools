@@ -34,6 +34,8 @@
 		EEEB1B2F29E86EB900BBC268 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B2E29E86EB900BBC268 /* Temperature.swift */; };
 		EEEB1B3129E86F7B00BBC268 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B3029E86F7B00BBC268 /* Wind.swift */; };
 		EEEB1B3329E9CC8F00BBC268 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B3229E9CC8F00BBC268 /* Country.swift */; };
+		EEEB1B3629E9E22D00BBC268 /* PomodoroCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B3529E9E22D00BBC268 /* PomodoroCoordinator.swift */; };
+		EEEB1B3829E9E29D00BBC268 /* PomodoroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B3729E9E29D00BBC268 /* PomodoroViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		EEEB1B2E29E86EB900BBC268 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		EEEB1B3029E86F7B00BBC268 /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
 		EEEB1B3229E9CC8F00BBC268 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		EEEB1B3529E9E22D00BBC268 /* PomodoroCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroCoordinator.swift; sourceTree = "<group>"; };
+		EEEB1B3729E9E29D00BBC268 /* PomodoroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +163,7 @@
 		EE58F57F29D5FADF0055E020 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				EEEB1B3429E9E21A00BBC268 /* Pomodoro */,
 				EEEB1B2429E74BD400BBC268 /* Weather */,
 				EE4D16DA29DC91F100B2966C /* Calendar */,
 				EE4D16D129DC8E2E00B2966C /* Calculator */,
@@ -208,6 +213,15 @@
 				EEEB1B3229E9CC8F00BBC268 /* Country.swift */,
 			);
 			path = WeatherModel;
+			sourceTree = "<group>";
+		};
+		EEEB1B3429E9E21A00BBC268 /* Pomodoro */ = {
+			isa = PBXGroup;
+			children = (
+				EEEB1B3529E9E22D00BBC268 /* PomodoroCoordinator.swift */,
+				EEEB1B3729E9E29D00BBC268 /* PomodoroViewController.swift */,
+			);
+			path = Pomodoro;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +306,7 @@
 				EE4D16C529D96CC800B2966C /* KitToolsCoordinator.swift in Sources */,
 				EE4D16D529DC8ED200B2966C /* CalculatorNumericKeyboard.swift in Sources */,
 				EEEB1B2A29E862EF00BBC268 /* WeatherModel.swift in Sources */,
+				EEEB1B3829E9E29D00BBC268 /* PomodoroViewController.swift in Sources */,
 				EE4D16DC29DC921900B2966C /* HolidaysCoordinator.swift in Sources */,
 				EEEB1B2629E74C2300BBC268 /* WeatherCoordinator.swift in Sources */,
 				EEEB1B2329E4986600BBC268 /* ApiManager.swift in Sources */,
@@ -303,6 +318,7 @@
 				EE4D16E029DC95F800B2966C /* HolidaysTableViewCell.swift in Sources */,
 				EE58F58329D5FF1E0055E020 /* KitToolsCollectionCell.swift in Sources */,
 				EEEB1B2029E257C400BBC268 /* NationalHolidaysModel.swift in Sources */,
+				EEEB1B3629E9E22D00BBC268 /* PomodoroCoordinator.swift in Sources */,
 				EE4D16D029D9825B00B2966C /* CoordinatorProtocol.swift in Sources */,
 				EEEB1B3129E86F7B00BBC268 /* Wind.swift in Sources */,
 			);
