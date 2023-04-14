@@ -102,14 +102,14 @@ class WeatherViewController: UIViewController {
        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "BackgroundDay")
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleToFill
         return image
     }()
     
     var weatherImage: UIImageView = {
        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.contentMode = .scaleAspectFill
+        image.contentMode = .scaleToFill
         image.tintColor = .systemYellow
         image.layer.shadowOpacity = 6
         return image
