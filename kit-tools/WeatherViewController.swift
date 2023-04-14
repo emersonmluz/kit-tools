@@ -245,30 +245,9 @@ class WeatherViewController: UIViewController {
                     let alert = UIAlertController(title: "Erro", message: "Falha ao buscar dados!", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Entendi", style: .default))
                     self.present(alert, animated: true)
-                    return}
+                return}
                 
-                switch weather.weather.first?.state {
-                case "Sun", "Clear":
-                    self.weatherImage.image = UIImage(systemName: "sun.max.fill")
-                    self.weatherImage.tintColor = .systemYellow
-                case "Clouds", "Mist":
-                    self.weatherImage.image = UIImage(systemName: "cloud.fill")
-                    self.weatherImage.tintColor = .systemGray4
-                case "Rain":
-                    self.weatherImage.image = UIImage(systemName: "cloud.rain.fill")
-                    self.weatherImage.tintColor = .systemGray4
-                case "Drizzle":
-                    self.weatherImage.image = UIImage(systemName: "cloud.drizzle.fill")
-                    self.weatherImage.tintColor = .systemGray4
-                case "Snow":
-                    self.weatherImage.image = UIImage(systemName: "snow")
-                    self.weatherImage.tintColor = .white
-                default:
-                    self.weatherImage.image = nil
-                    let alert = UIAlertController(title: nil, message: "Imagem do clima não mapeada para essa região.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Entendi", style: .cancel))
-                    self.present(alert, animated: true)
-                }
+                self.setWeatherImage(weatherState: weather.weather.first?.state ?? "")
                 
                 self.grauLabel.text = " " + String(Int(weather.temperature.temp)) + " °C" + " "
                 self.cityLabel.text = weather.city + " - " + weather.locale.country
@@ -276,9 +255,35 @@ class WeatherViewController: UIViewController {
                 self.minTemperature.text = " " + String(Int(weather.temperature.tempMin)) + " °C" + " "
                 self.windSpeed.text = " Vento: " + String(Int(weather.wind.speed)) + " Km/h" + " "
                 self.humidity.text = " UR " + String(Int(weather.temperature.humidity)) + "%" + " "
+                
                 self.loadingView.isHidden = true
                 self.activity.stopAnimating()
             }
+        }
+    }
+    
+    func setWeatherImage(weatherState: String) {
+        switch weatherState {
+        case "Sun", "Clear":
+            self.weatherImage.image = UIImage(systemName: "sun.max.fill")
+            self.weatherImage.tintColor = .systemYellow
+        case "Clouds", "Mist":
+            self.weatherImage.image = UIImage(systemName: "cloud.fill")
+            self.weatherImage.tintColor = .systemGray4
+        case "Rain":
+            self.weatherImage.image = UIImage(systemName: "cloud.rain.fill")
+            self.weatherImage.tintColor = .systemGray4
+        case "Drizzle":
+            self.weatherImage.image = UIImage(systemName: "cloud.drizzle.fill")
+            self.weatherImage.tintColor = .systemGray4
+        case "Snow":
+            self.weatherImage.image = UIImage(systemName: "snow")
+            self.weatherImage.tintColor = .white
+        default:
+            self.weatherImage.image = nil
+            let alert = UIAlertController(title: nil, message: "Imagem do clima não mapeada para essa região.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Entendi", style: .cancel))
+            self.present(alert, animated: true)
         }
     }
 }

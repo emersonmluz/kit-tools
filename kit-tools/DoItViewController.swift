@@ -2,9 +2,9 @@ import UIKit
 
 final class DoItViewController: UIViewController {
     
-    private var notes: [String] = UserDefaults.standard.value(forKey: "notes") as? [String] ?? []
+    var notes: [String] = UserDefaults.standard.value(forKey: "notes") as? [String] ?? []
     
-    private var containerView: UIView = {
+    var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.systemYellow
@@ -13,7 +13,7 @@ final class DoItViewController: UIViewController {
         return view
     }()
     
-    private lazy var noteTextField: UITextField = {
+    lazy var noteTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.backgroundColor = UIColor.white
@@ -23,7 +23,7 @@ final class DoItViewController: UIViewController {
         return textField
     }()
     
-    private lazy var plusButton: UIButton = {
+    lazy var plusButton: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "plus"), for: .normal)
@@ -32,7 +32,7 @@ final class DoItViewController: UIViewController {
         return button
     }()
     
-    private lazy var notesTableView: UITableView = {
+    lazy var notesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -46,26 +46,26 @@ final class DoItViewController: UIViewController {
         setupUI()
     }
     
-    private func setupUI() {
+    func setupUI() {
         view.backgroundColor = UIColor.white
         touchScreen()
         setComponents()
         setConstraints()
     }
     
-    private func touchScreen () {
+    func touchScreen () {
         let touch = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(touch)
     }
     
-    private func setComponents() {
+    func setComponents() {
         view.addSubview(containerView)
         containerView.addSubview(noteTextField)
         containerView.addSubview(plusButton)
         view.addSubview(notesTableView)
     }
     
-    private func setConstraints() {
+    func setConstraints() {
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -92,7 +92,7 @@ final class DoItViewController: UIViewController {
         addNote()
     }
     
-    private func addNote() {
+    func addNote() {
         guard let note = noteTextField.text, noteTextField.text != nil, noteTextField.text != "" else {return}
         notes.append(note)
         UserDefaults.standard.set(notes, forKey: "notes")
@@ -100,7 +100,7 @@ final class DoItViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private func alert (tableView: UITableView, indexPath: IndexPath) {
+    func alert (tableView: UITableView, indexPath: IndexPath) {
         let alert = UIAlertController(title: "Confirme", message: "Deseja remover essa nota?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
         alert.addAction(UIAlertAction(title: "Remover", style: .destructive) {_ in
