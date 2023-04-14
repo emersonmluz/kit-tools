@@ -33,6 +33,7 @@
 		EEEB1B2D29E86D3600BBC268 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B2C29E86D3600BBC268 /* Weather.swift */; };
 		EEEB1B2F29E86EB900BBC268 /* Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B2E29E86EB900BBC268 /* Temperature.swift */; };
 		EEEB1B3129E86F7B00BBC268 /* Wind.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B3029E86F7B00BBC268 /* Wind.swift */; };
+		EEEB1B3329E9CC8F00BBC268 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB1B3229E9CC8F00BBC268 /* Country.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		EEEB1B2C29E86D3600BBC268 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		EEEB1B2E29E86EB900BBC268 /* Temperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperature.swift; sourceTree = "<group>"; };
 		EEEB1B3029E86F7B00BBC268 /* Wind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wind.swift; sourceTree = "<group>"; };
+		EEEB1B3229E9CC8F00BBC268 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +205,7 @@
 				EEEB1B2C29E86D3600BBC268 /* Weather.swift */,
 				EEEB1B2E29E86EB900BBC268 /* Temperature.swift */,
 				EEEB1B3029E86F7B00BBC268 /* Wind.swift */,
+				EEEB1B3229E9CC8F00BBC268 /* Country.swift */,
 			);
 			path = WeatherModel;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				EE58F56C29D5F9870055E020 /* AppDelegate.swift in Sources */,
 				EE4D16CE29D97B6A00B2966C /* DoItViewController.swift in Sources */,
 				EE58F56E29D5F9870055E020 /* SceneDelegate.swift in Sources */,
+				EEEB1B3329E9CC8F00BBC268 /* Country.swift in Sources */,
 				EE4D16C529D96CC800B2966C /* KitToolsCoordinator.swift in Sources */,
 				EE4D16D529DC8ED200B2966C /* CalculatorNumericKeyboard.swift in Sources */,
 				EEEB1B2A29E862EF00BBC268 /* WeatherModel.swift in Sources */,

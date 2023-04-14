@@ -31,23 +31,74 @@ class WeatherViewController: UIViewController {
         return button
     }()
     
-    lazy var grauLabel: UILabel = {
+    var grauLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "0"
         label.font = UIFont(name: "Arial", size: 40)
+        label.backgroundColor = .systemGreen
+        label.clipsToBounds = true
+        label.textColor = .white
+        label.layer.borderWidth = 1
+        label.layer.cornerRadius = 8
         return label
     }()
     
-    lazy var cityLabel: UILabel = {
+    var maxTemperature: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "city"
+        label.font = UIFont(name: "Arial", size: 20)
+        label.backgroundColor = .systemBlue
+        label.clipsToBounds = true
+        label.textColor = .white
+        label.layer.borderWidth = 1
+        label.layer.cornerRadius = 8
+        return label
+    }()
+    
+    var minTemperature: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Arial", size: 20)
+        label.backgroundColor = .systemRed
+        label.clipsToBounds = true
+        label.textColor = .white
+        label.layer.borderWidth = 1
+        label.layer.cornerRadius = 8
+        return label
+    }()
+    
+    var humidity: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Arial", size: 20)
+        label.backgroundColor = .systemBrown
+        label.clipsToBounds = true
+        label.textColor = .white
+        label.layer.borderWidth = 1
+        label.layer.cornerRadius = 8
+        return label
+    }()
+    
+    var windSpeed: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Arial", size: 20)
+        label.backgroundColor = .systemPurple
+        label.clipsToBounds = true
+        label.textColor = .white
+        label.layer.borderWidth = 1
+        label.layer.cornerRadius = 8
+        return label
+    }()
+    
+    var cityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Arial", size: 20)
         return label
     }()
     
-    lazy var backgroundImage: UIImageView = {
+    var backgroundImage: UIImageView = {
        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "BackgroundDay")
@@ -55,10 +106,9 @@ class WeatherViewController: UIViewController {
         return image
     }()
     
-    lazy var weatherImage: UIImageView = {
+    var weatherImage: UIImageView = {
        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "sun.max.fill")
         image.contentMode = .scaleAspectFill
         image.tintColor = .systemYellow
         image.layer.shadowOpacity = 6
@@ -102,6 +152,10 @@ class WeatherViewController: UIViewController {
         view.addSubview(weatherImage)
         view.addSubview(grauLabel)
         view.addSubview(cityLabel)
+        view.addSubview(maxTemperature)
+        view.addSubview(minTemperature)
+        view.addSubview(windSpeed)
+        view.addSubview(humidity)
         view.addSubview(loadingView)
         loadingView.addSubview(activity)
     }
@@ -124,17 +178,33 @@ class WeatherViewController: UIViewController {
             searchButton.heightAnchor.constraint(equalToConstant: 35),
             
             weatherImage.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 40),
-            weatherImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            weatherImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
             weatherImage.heightAnchor.constraint(equalToConstant: 85),
             weatherImage.widthAnchor.constraint(equalToConstant: 85),
             
             grauLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor, constant: 50),
             grauLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            grauLabel.heightAnchor.constraint(equalToConstant: 30),
+            grauLabel.heightAnchor.constraint(equalToConstant: 45),
             
-            cityLabel.topAnchor.constraint(equalTo: grauLabel.bottomAnchor, constant: 20),
-            cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            cityLabel.topAnchor.constraint(equalTo: grauLabel.bottomAnchor, constant: 10),
+            cityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
             cityLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            minTemperature.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 22),
+            minTemperature.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            minTemperature.heightAnchor.constraint(equalToConstant: 28),
+            
+            maxTemperature.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 22),
+            maxTemperature.trailingAnchor.constraint(equalTo: minTemperature.leadingAnchor, constant: -15),
+            maxTemperature.heightAnchor.constraint(equalToConstant: 28),
+            
+            windSpeed.topAnchor.constraint(equalTo: maxTemperature.bottomAnchor, constant: 15),
+            windSpeed.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            windSpeed.heightAnchor.constraint(equalToConstant: 28),
+            
+            humidity.topAnchor.constraint(equalTo: windSpeed.bottomAnchor, constant: 15),
+            humidity.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            humidity.heightAnchor.constraint(equalToConstant: 28),
             
             loadingView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -178,24 +248,34 @@ class WeatherViewController: UIViewController {
                     return}
                 
                 switch weather.weather.first?.state {
-                case "Sun":
+                case "Sun", "Clear":
                     self.weatherImage.image = UIImage(systemName: "sun.max.fill")
                     self.weatherImage.tintColor = .systemYellow
-                case "Clouds":
+                case "Clouds", "Mist":
                     self.weatherImage.image = UIImage(systemName: "cloud.fill")
                     self.weatherImage.tintColor = .systemGray4
                 case "Rain":
                     self.weatherImage.image = UIImage(systemName: "cloud.rain.fill")
                     self.weatherImage.tintColor = .systemGray4
+                case "Drizzle":
+                    self.weatherImage.image = UIImage(systemName: "cloud.drizzle.fill")
+                    self.weatherImage.tintColor = .systemGray4
+                case "Snow":
+                    self.weatherImage.image = UIImage(systemName: "snow")
+                    self.weatherImage.tintColor = .white
                 default:
                     self.weatherImage.image = nil
-                    let alert = UIAlertController(title: nil, message: "Imagem do clima não mapeada.", preferredStyle: .alert)
+                    let alert = UIAlertController(title: nil, message: "Imagem do clima não mapeada para essa região.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Entendi", style: .cancel))
                     self.present(alert, animated: true)
                 }
                 
-                self.grauLabel.text = String(Int(weather.temperature.temp)) + " °C"
-                self.cityLabel.text = (weather.city)
+                self.grauLabel.text = " " + String(Int(weather.temperature.temp)) + " °C" + " "
+                self.cityLabel.text = weather.city + " - " + weather.locale.country
+                self.maxTemperature.text = " " + String(Int(weather.temperature.tempMax)) + " °C" + " "
+                self.minTemperature.text = " " + String(Int(weather.temperature.tempMin)) + " °C" + " "
+                self.windSpeed.text = " Vento: " + String(Int(weather.wind.speed)) + " Km/h" + " "
+                self.humidity.text = " UR " + String(Int(weather.temperature.humidity)) + "%" + " "
                 self.loadingView.isHidden = true
                 self.activity.stopAnimating()
             }

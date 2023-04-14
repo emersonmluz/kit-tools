@@ -12,11 +12,13 @@ struct WeatherModel: Decodable {
     var temperature: Temperature
     var wind: Wind
     var city: String
+    var locale: Country
     
     enum CodingKeys: String, CodingKey {
         case weather
         case temperature = "main"
         case wind
         case city = "name"
+        case locale = "sys"
     }
 }
