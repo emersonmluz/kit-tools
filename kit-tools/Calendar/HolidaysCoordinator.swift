@@ -18,6 +18,6 @@ class HolidaysCoordinator: CoordinatorProtocol {
     
     func start() {
         let controller = HolidaysViewController()
-        navigation?.pushViewController(controller, animated: true)
+        navigation?.pushViewController(controller, animated: false)
     }
 }

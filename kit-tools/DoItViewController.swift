@@ -47,7 +47,8 @@ final class DoItViewController: UIViewController {
     }
     
     func setupUI() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = .white
+        self.navigationItem.title = "Notas"
         touchScreen()
         setComponents()
         setConstraints()

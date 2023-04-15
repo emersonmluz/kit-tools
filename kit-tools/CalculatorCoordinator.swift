@@ -18,6 +18,6 @@ class CalculatorCoordinator: CoordinatorProtocol {
     
     func start() {
         let controller = CalculatorViewController()
-        navigation?.pushViewController(controller, animated: true)
+        navigation?.pushViewController(controller, animated: false)
     }
 }

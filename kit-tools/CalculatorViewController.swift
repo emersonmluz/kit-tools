@@ -40,6 +40,7 @@ class CalculatorViewController: UIViewController, NumericKeyboardDelegate {
     
     func setupUI() {
         view.backgroundColor = .white
+        self.navigationItem.title = "Calculadora"
         numericKeyboard.delegate = self
         setComponents()
         setConstraint()

@@ -18,7 +18,7 @@ class PomodoroCoordinator: CoordinatorProtocol {
     
     func start() {
         let controller = PomodoroViewController()
-        navigation?.pushViewController(controller, animated: true)
+        navigation?.pushViewController(controller, animated: false)
     }
     
     

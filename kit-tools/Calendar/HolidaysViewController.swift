@@ -62,6 +62,7 @@ class HolidaysViewController: UIViewController {
     
     func setupUI() {
         view.backgroundColor = .white
+        self.navigationItem.title = "Feriados"
         setComponents()
         setContraints()
         setTouchScreen()

@@ -18,6 +18,6 @@ class WeatherCoordinator: CoordinatorProtocol {
     
     func start() {
         let controller = WeatherViewController()
-        navigation?.pushViewController(controller, animated: true)
+        navigation?.pushViewController(controller, animated: false)
     }
 }

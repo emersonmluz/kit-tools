@@ -139,6 +139,7 @@ class WeatherViewController: UIViewController {
     
     func setupUI() {
         view.backgroundColor = .white
+        self.navigationItem.title = "Clima"
         setComponents()
         setConstraints()
         setTouchScreen()

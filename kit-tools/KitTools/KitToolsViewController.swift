@@ -39,10 +39,20 @@ final class KitToolsViewController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     func setupUI() {
         view.backgroundColor = .white
+        setNavigationItem()
         setComponents()
         setConstraints()
+    }
+    
+    func setNavigationItem() {
+        self.navigationItem.backButtonTitle = " "
+        self.navigationItem.title = "Kit Tools"
     }
     
     func setComponents() {
@@ -97,6 +107,7 @@ extension KitToolsViewController: UICollectionViewDataSource, UICollectionViewDe
             self.present(alert, animated: true)
         }
         if let coordinatorReference = coordinatorReference {
+            self.navigationController?.navigationBar.prefersLargeTitles = false
             coordinator?.goToApp(coordinator: coordinatorReference)
         }
     }

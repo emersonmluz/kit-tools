@@ -11,6 +11,6 @@ final class DoItCoordinator: CoordinatorProtocol {
     
     func start() {
         let controller = DoItViewController()
-        navigation?.pushViewController(controller, animated: true)
+        navigation?.pushViewController(controller, animated: false)
     }
 }

@@ -14,7 +14,15 @@ protocol RouterProtocol {
 }
 
 final class Router: RouterProtocol {
-    var navigation = UINavigationController()
+    var navigation: UINavigationController = {
+        let navigation = UINavigationController()
+        let backImage = UIImage(systemName: "arrowshape.left.fill")
+        navigation.navigationBar.backIndicatorImage = backImage
+        navigation.navigationBar.backIndicatorTransitionMaskImage = backImage
+        UIBarButtonItem.appearance().tintColor = .black
+        return navigation
+    }()
+    
     static var shared = Router()
     
     func showApp(coordinator: CoordinatorProtocol) {

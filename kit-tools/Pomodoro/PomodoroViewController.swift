@@ -55,6 +55,7 @@ class PomodoroViewController: UIViewController {
     
     func setupUI() {
         view.backgroundColor = .systemRed
+        self.navigationItem.title = "Pomodoro"
         setComponents()
         setConstraints()
         //loadSound()
