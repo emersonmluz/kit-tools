@@ -31,65 +31,18 @@ class WeatherViewController: UIViewController {
         return button
     }()
     
-    var grauLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Arial", size: 40)
-        label.backgroundColor = .systemGreen
-        label.clipsToBounds = true
-        label.textColor = .white
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 8
-        return label
-    }()
-    
-    var maxTemperature: UILabel = {
+    lazy var weatherDescription: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Arial", size: 20)
-        label.backgroundColor = .systemBlue
-        label.clipsToBounds = true
-        label.textColor = .white
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 8
         return label
     }()
     
-    var minTemperature: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Arial", size: 20)
-        label.backgroundColor = .systemRed
-        label.clipsToBounds = true
-        label.textColor = .white
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 8
-        return label
-    }()
-    
-    var humidity: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Arial", size: 20)
-        label.backgroundColor = .systemBrown
-        label.clipsToBounds = true
-        label.textColor = .white
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 8
-        return label
-    }()
-    
-    var windSpeed: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Arial", size: 20)
-        label.backgroundColor = .systemPurple
-        label.clipsToBounds = true
-        label.textColor = .white
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 8
-        return label
-    }()
+    lazy var grauLabel: UILabel = setLabel(fontSize: 40, backgroundColor: .systemGreen)
+    lazy var maxTemperature: UILabel = setLabel(fontSize: 20, backgroundColor: .systemBlue)
+    lazy var minTemperature: UILabel = setLabel(fontSize: 20, backgroundColor: .systemRed)
+    lazy var humidity: UILabel = setLabel(fontSize: 20, backgroundColor: .systemBrown)
+    lazy var windSpeed: UILabel = setLabel(fontSize: 20, backgroundColor: .systemPurple)
     
     var cityLabel: UILabel = {
         let label = UILabel()
@@ -151,6 +104,7 @@ class WeatherViewController: UIViewController {
         view.addSubview(searchTextField)
         view.addSubview(searchButton)
         view.addSubview(weatherImage)
+        view.addSubview(weatherDescription)
         view.addSubview(grauLabel)
         view.addSubview(cityLabel)
         view.addSubview(maxTemperature)
@@ -183,7 +137,11 @@ class WeatherViewController: UIViewController {
             weatherImage.heightAnchor.constraint(equalToConstant: 85),
             weatherImage.widthAnchor.constraint(equalToConstant: 85),
             
-            grauLabel.topAnchor.constraint(equalTo: weatherImage.bottomAnchor, constant: 50),
+            weatherDescription.topAnchor.constraint(equalTo: weatherImage.bottomAnchor, constant: 10),
+            weatherDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            weatherDescription.heightAnchor.constraint(equalToConstant: 20),
+            
+            grauLabel.topAnchor.constraint(equalTo: weatherDescription.bottomAnchor, constant: 50),
             grauLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             grauLabel.heightAnchor.constraint(equalToConstant: 45),
             
@@ -215,6 +173,19 @@ class WeatherViewController: UIViewController {
             activity.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
             activity.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor)
         ])
+    }
+    
+    func setLabel(fontSize: CGFloat, backgroundColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Arial", size: fontSize)
+        label.numberOfLines = 0
+        label.backgroundColor = backgroundColor
+        label.clipsToBounds = true
+        label.textColor = .white
+        label.layer.borderWidth = 1
+        label.layer.cornerRadius = 8
+        return label
     }
     
     @objc func searchButtonClick(_: UIGestureRecognizer) {
@@ -249,7 +220,7 @@ class WeatherViewController: UIViewController {
                 return}
                 
                 self.setWeatherImage(weatherState: weather.weather.first?.state ?? "")
-                
+                self.weatherDescription.text = weather.weather.first?.description
                 self.grauLabel.text = " " + String(Int(weather.temperature.temp)) + " °C" + " "
                 self.cityLabel.text = weather.city + " - " + weather.locale.country
                 self.maxTemperature.text = " " + String(Int(weather.temperature.tempMax)) + " °C" + " "
