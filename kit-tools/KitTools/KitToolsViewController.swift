@@ -86,13 +86,15 @@ extension KitToolsViewController: UICollectionViewDataSource, UICollectionViewDe
         case appName.calculadora.rawValue:
             coordinatorReference = CalculatorCoordinator(navigation: coordinator?.navigation)
         case appName.pomodoro.rawValue:
-            print("ir para pomodoro")
+            coordinatorReference = PomodoroCoordinator(navigation: coordinator?.navigation)
         case appName.clima.rawValue:
             coordinatorReference = WeatherCoordinator(navigation: coordinator?.navigation)
         case appName.holidays.rawValue:
             coordinatorReference = HolidaysCoordinator(navigation: coordinator?.navigation)
         default:
-            print("error")
+            let alert = UIAlertController(title: "Erro", message: "Algo deu errado! Tente novamente mais tarde.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Entendi", style: .default))
+            self.present(alert, animated: true)
         }
         if let coordinatorReference = coordinatorReference {
             coordinator?.goToApp(coordinator: coordinatorReference)
