@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Calendário.jpeg",
+      "filename" : "Holidays.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Calendário@2x.jpeg",
+      "filename" : "Holidays@2x.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Calendário@3x.jpeg",
+      "filename" : "Holidays@3x.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }
