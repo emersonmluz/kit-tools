@@ -72,7 +72,7 @@ class PomodoroViewController: UIViewController {
             sgControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             sgControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             sgControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            sgControl.heightAnchor.constraint(equalToConstant: 30),
+            sgControl.heightAnchor.constraint(equalToConstant: 40),
             
             lbTime.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             lbTime.centerYAnchor.constraint(equalTo: view.centerYAnchor),
