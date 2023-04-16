@@ -58,7 +58,7 @@ class PomodoroViewController: UIViewController {
         self.navigationItem.title = "Pomodoro"
         setComponents()
         setConstraints()
-        //loadSound()
+        loadSound()
     }
     
     func setComponents() {
@@ -88,16 +88,18 @@ class PomodoroViewController: UIViewController {
     
     func loadSound() {
         do {
-            let effect = Bundle.main.path(forResource: "lesson-25_som-irritante", ofType: "WAV")
+            let effect = Bundle.main.path(forResource: "alarm", ofType: "mp3")
             try sound = AVAudioPlayer(contentsOf: URL(fileURLWithPath: effect!))
         } catch {
-            print("Sound não encontrado.")
+            let alert = UIAlertController(title: "Erro", message: "Arquivo de áudio não encontrado.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Entendi", style: .default))
         }
     }
 
     @objc func start(_ sender: UIButton) {
         guard sender.titleLabel?.text != "OK" else {
             sender.setTitle("Start", for: .normal)
+            sound.stop()
             reset()
             return
         }
@@ -124,6 +126,7 @@ class PomodoroViewController: UIViewController {
     }
     
     @objc func clickSgControl(_ sender: UISegmentedControl) {
+        sound.stop()
         btStart.setTitle("Start", for: .normal)
         reset()
     }
@@ -161,7 +164,8 @@ class PomodoroViewController: UIViewController {
                 pomodoroMinute = 14
                 lbTime.text = "15:00"
         default:
-            print("Algo de errado não está certo.")
+            let alert = UIAlertController(title: "Erro", message: "Erro inesperado! Tente novamente mais tarde.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Entendi", style: .default))
         }
         pomodoroSeconds = 59
     }
